@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">patient.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <!-- NAMES -->
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+                <div>
+                    <span style="margin-right: 15px;" class="o_form_label">
+                        Arabic Name
+                    </span>
+                    <field name="name_fourth_arabic" style="width: 15%;margin-right: 5px;font-size: small"/>
+                    <field name="name_third_arabic" style="width: 15%;margin-right: 5px;font-size: small"/>
+                    <field name="name_second_arabic" style="width: 15%;margin-right: 5px;font-size: small"/>
+                    <field name="name_first_arabic" nolabel="1" style="width: 15%;margin-right: 5px;font-size: small"/>
+                </div>
+
+                    <div>
+                        <span style="margin-right: 15px;" class="o_form_label">
+                            English Name
+                        </span>
+                        <field name="name_first_english" nolabel="1" style="width: 15%;margin-right: 5px;font-size: small"/>
+                        <field name="name_second_english" style="width: 15%;margin-right: 5px;font-size: small"/>
+                        <field name="name_third_english" style="width: 15%;margin-right: 5px;font-size: small"/>
+                        <field name="name_fourth_english" style="width: 15%;margin-right: 5px;font-size: small"/>
+                    </div>
+
+            </xpath>
+
+            <!-- Address field -->
+            <xpath expr="//form//div[@class='o_address_format']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form//div[@class='o_address_format']" position="before">
+                <div class="o_address_format">
+                    <field name="street" placeholder="Street..." class="o_address_street"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="integ_country_id" placeholder="Country..."/>
+                    <field name="integ_city_id" placeholder="City..."/>
+                    <field name="integ_district_id" placeholder="District..."/>
+                    <field name="integ_neighborhood_id" placeholder="Neighborhood..."/>
+                </div>
+            </xpath>
+
+            <!-- GENDER AND BIRTHDATE -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="gender"/>
+            </xpath>
+            <xpath expr="//field[@name='gender']" position="after">
+                <field name="date_of_birth"/>
+            </xpath>
+
+            <!-- SOCIAL MEDIA -->
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="facebook"/>
+            </xpath>
+            <xpath expr="//field[@name='facebook']" position="after">
+                <field name="instagram"/>
+            </xpath>
+            <xpath expr="//field[@name='instagram']" position="after">
+                <field name="linkedin"/>
+            </xpath>
+            <xpath expr="//field[@name='linkedin']" position="after">
+                <field name="last_financial_category_id" readonly="1"/>
+            </xpath>
+
+            <!--  SMART BUTTONS HIDING  -->
+            <xpath expr="//button[@name='schedule_meeting']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(sale.act_res_partner_2_sale_order)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(purchase.act_res_partner_2_purchase_order)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(purchase.act_res_partner_2_supplier_invoices)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!--  FIELDS HIDING  -->
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!--  NOTEBOOK TAPS HIDING  -->
+            <page name="contact_addresses" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </page>
+            <page name="accounting" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </page>
+            <page name="sales_purchases" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </page>
+            <page name="internal_notes" position="attributes">
+                <attribute name='invisible'>1</attribute>
+            </page>
+
+            <!-- ADDING lAST VISITS PAGE -->
+            <xpath expr="//form//sheet" position="inside">
+                <notebook>
+                    <page string="Last Visits" name="visits">
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hmis_root"
+              name="HMIS Integration"
+              sequence="10"/>
+
+    <menuitem id="menu_patient"
+              name="Patients"
+              parent="menu_hmis_root"
+              action="action_patient"
+              sequence="10"/>
+</odoo>

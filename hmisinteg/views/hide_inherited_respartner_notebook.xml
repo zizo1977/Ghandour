@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <record id="hide_inherited_respartner_notebook" model="ir.ui.view">
+        <field name="name">hide.inherited.respartner.notebook</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="basic_hms.res_partner_inherit_form_health_center_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+     </record>
+</odoo>

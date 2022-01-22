@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hide_respartner_button" model="ir.ui.view">
+        <field name="name">hide.respartner.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="purchase_stock.res_partner_view_purchase_buttons_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@groups='purchase.group_purchase_user']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="context">{}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='687']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

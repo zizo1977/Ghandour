@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+insurance_mother_company_user,insurance_mother_company user,model_hmisinteg_insurance_mother_company,base.group_user,1,1,1,1
+insurance_company_user,insurance_company user,model_hmisinteg_insurance_company,base.group_user,1,1,1,1
+financial_category_user,financial_category user,model_hmisinteg_financial_category,base.group_user,1,1,1,1
+country_user,country user,model_hmisinteg_country,base.group_user,1,1,1,1
+city_user,city user,model_hmisinteg_city,base.group_user,1,1,1,1
+district_user,district user,model_hmisinteg_district,base.group_user,1,1,1,1
+neighborhood_user,neighborhood user,model_hmisinteg_neighborhood,base.group_user,1,1,1,1
